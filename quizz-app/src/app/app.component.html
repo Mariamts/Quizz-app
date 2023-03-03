@@ -1,0 +1,15 @@
+<form [formGroup]="quizForm" (ngSubmit)="onSubmit()">
+  <div class="questions" *ngFor="let question of questions; let i = index" [hidden]="i !== currentQuestion">
+    <h3>{{ question.text }}</h3>
+    <div *ngFor="let answer of question.answers">
+      <label>
+        <input type="radio" [formControlName]="question.id" [value]="answer.text">
+        {{ answer.text }}
+      </label>
+    </div>
+    <br>
+  </div>
+  <br>
+  <button (click)="nextQuestion()">Next</button>
+  <button type="submit" [disabled]="!quizForm.valid">Submit Quiz</button>
+</form>
